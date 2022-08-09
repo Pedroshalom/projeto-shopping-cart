@@ -5,15 +5,15 @@ const computadorSearch = require('../mocks/search');
 describe('1 - Teste a função fetchProducts', () => {
   // implemente seus testes aqui
   it('Teste se fetchProducts é uma função', () => {
-    expect(typeof(fetchProducts)).tobe('function');
+    expect(typeof (fetchProducts)).tobe('function');
   });
   // fail('Teste vazio');
-  it('Executando a funçao fetchProducts com o argumento "computador" teste se a função fetch foi chamada', async() => {
+  it('Executando a funçao fetchProducts com o argumento "computador" teste se a função fetch foi chamada', async () => {
     await fetchProducts('computador');
     expect(fetch).toHaveBeenCalled();
   });
 
-  it('Teste se, ao chamar a função fetchProducts com o argumento "computador" teste se a função fetch utiliza o endpoint',  async () =>{
+  it('Teste se, ao chamar a função fetchProducts com o argumento "computador" teste se a função fetch utiliza o endpoint', async () => {
     const resultado = await fetchProducts('computador');
     const url = "https://api.mercadolibre.com/sites/MLB/search?q=computador";
     expect(fetch).toHaveBeenCalledWith(url);
