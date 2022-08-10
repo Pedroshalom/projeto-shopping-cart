@@ -1,5 +1,31 @@
 const sectionItems = document.querySelector('.items');
 const itensDoCarrinho = document.querySelector('.cart__items');
+// const preçoTotal = document.querySelector('.total-price');
+// const texto = document.querySelector('.loading');
+
+// function adicionaTextoCarregando() {
+//   const adiciona = document.createElement('p');
+//   texto.innerText = 'carregando...';
+//   texto.appendChild(adiciona);
+// }
+
+// function removeCarregando() {
+//   texto.remove();
+//   }
+// function calcularPreços() {
+//   let soma = 0;
+//   const li = document.getElementsByClassName('cart__item');
+//   if (li.length === 0) {
+//     const list = document.getElementsByClassName('total-price'[0]);
+//     list.innerText = 0;
+//   } else {
+//     array.from(lista).forEach((elemento) => {
+//       soma += Number(elemento.innerText.split('PRICE: $')[1]);
+//       const valorTotal = document.getElementsByClassName('total-price')[0];
+//       valorTotal.innerText = soma;
+//   });
+// }
+// }
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -17,6 +43,7 @@ const createCustomElement = (element, className, innerText) => {
 const cartItemClickListener = (event) => {
   // coloque seu código aqui
   event.target.remove();
+  // calcularPreços();
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -35,6 +62,7 @@ async function addAoCarrinho(sku) {
     salePrice: produto.price });
   itensDoCarrinho.appendChild(item);
   saveCartItems(itensDoCarrinho.innerHTML);
+  // calcularPreços();
 }
 
 const createProductItemElement = ({ sku, name, image }) => {
@@ -51,7 +79,9 @@ const createProductItemElement = ({ sku, name, image }) => {
 };
 
 const createElementProducstInDom = async () => {
+  // adicionaCarregando();
   const produtos = await fetchProducts('computador');
+  // removeCarregando();
   sectionItems.innerHTML = '';
   produtos.results.map((produto) => {
     const products = { sku: produto.id, name: produto.title, image: produto.thumbnail };
@@ -65,6 +95,7 @@ function esvaziarOCarrinho() {
   const button = document.querySelector('.empty-cart');
   button.addEventListener('click', () => {
     itensDoCarrinho.innerHTML = ''; 
+    // calcularPreços();
   });
 }
 
@@ -73,4 +104,5 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 window.onload = () => {
   createElementProducstInDom();
   esvaziarOCarrinho();
+  // calcularPreços();
  };
