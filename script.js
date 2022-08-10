@@ -1,31 +1,17 @@
 const sectionItems = document.querySelector('.items');
 const itensDoCarrinho = document.querySelector('.cart__items');
-// const preçoTotal = document.querySelector('.total-price');
-// const texto = document.querySelector('.loading');
+const texto = document.querySelector('.loading');
 
-// function adicionaTextoCarregando() {
-//   const adiciona = document.createElement('p');
-//   texto.innerText = 'carregando...';
-//   texto.appendChild(adiciona);
-// }
+function adicionaTextoCarregando() {
+  const adiciona = document.createElement('p');
+  console.log(texto);
+  texto.innerText = 'carregando...';
+  texto.appendChild(adiciona);
+}
 
-// function removeCarregando() {
-//   texto.remove();
-//   }
-// function calcularPreços() {
-//   let soma = 0;
-//   const li = document.getElementsByClassName('cart__item');
-//   if (li.length === 0) {
-//     const list = document.getElementsByClassName('total-price'[0]);
-//     list.innerText = 0;
-//   } else {
-//     array.from(lista).forEach((elemento) => {
-//       soma += Number(elemento.innerText.split('PRICE: $')[1]);
-//       const valorTotal = document.getElementsByClassName('total-price')[0];
-//       valorTotal.innerText = soma;
-//   });
-// }
-// }
+function removeTextoCarregando() {
+  texto.remove();
+  }
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -46,7 +32,7 @@ const cartItemClickListener = (event) => {
   // calcularPreços();
 };
 
-const createCartItemElement = ({ sku, name, salePrice }) => {
+  const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
@@ -79,9 +65,9 @@ const createProductItemElement = ({ sku, name, image }) => {
 };
 
 const createElementProducstInDom = async () => {
-  // adicionaCarregando();
+  adicionaTextoCarregando();
   const produtos = await fetchProducts('computador');
-  // removeCarregando();
+  removeTextoCarregando();
   sectionItems.innerHTML = '';
   produtos.results.map((produto) => {
     const products = { sku: produto.id, name: produto.title, image: produto.thumbnail };
